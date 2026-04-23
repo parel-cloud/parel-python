@@ -1,0 +1,99 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "parel-cloud"
+version = "0.1.0"
+description = "Official Python SDK for Parel. 100+ AI models, GPU rental (BYOM), compare, and credits via a single OpenAI-compatible API."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+authors = [
+    { name = "Aleonis Teknoloji", email = "hello@parel.cloud" },
+]
+maintainers = [
+    { name = "Aleonis Teknoloji", email = "hello@parel.cloud" },
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Typing :: Typed",
+]
+keywords = [
+    "parel",
+    "ai",
+    "llm",
+    "gpu",
+    "openai",
+    "openai-compatible",
+    "sdk",
+    "byom",
+    "huggingface",
+    "inference",
+]
+dependencies = [
+    "httpx>=0.27.0",
+]
+
+[project.optional-dependencies]
+openai = ["openai>=1.0"]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.23",
+    "respx>=0.21",
+    "mypy>=1.8",
+    "ruff>=0.4",
+    "build>=1.2",
+    "twine>=5.0",
+]
+
+[project.urls]
+Homepage = "https://parel.cloud"
+Documentation = "https://github.com/parel-cloud/parel-python#readme"
+Repository = "https://github.com/parel-cloud/parel-python"
+Issues = "https://github.com/parel-cloud/parel-python/issues"
+"JavaScript SDK" = "https://github.com/parel-cloud/parel-node"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/parel_cloud"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "src/parel_cloud",
+    "tests",
+    "examples",
+    "parity.json",
+    "README.md",
+    "LICENSE",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+filterwarnings = [
+    "error",
+    "ignore::DeprecationWarning",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "SIM"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+warn_unused_ignores = true
